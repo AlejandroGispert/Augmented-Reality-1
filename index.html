@@ -22,12 +22,14 @@
 
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
     <a-entity mindar-image-target="targetIndex: 0">
-  <a-plane src="#card" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane>
+
   <a-gltf-model 
     src="#avatarModel3" 
     id="interactiveMobileModel" 
    
-    rotation="-90 180 0" position="0 -0.5 0" scale="0.05 0.05 0.05"
+    rotation="-90 0 0" position="0 -0.5 0" scale="0.05 0.05 0.05"
+    animation__hover="property: scale; to: 0.2 0.2 0.2; dur: 200; startEvents: click; pauseEvents: mouseleave"
+    animation__rotation="property: rotation; to: -90 360 0; dur: 1000; startEvents: click; loop: 1">
     ></a-gltf-model>
 </a-entity>
 
@@ -39,10 +41,10 @@
       // Add touch event listener (tap acts as click on mobile)
       el.addEventListener('click', function () {
         // Rotate the model on tap
-        el.setAttribute('rotation', {x: -90, y: 360, z: 0});
+        el.setAttribute('rotation', {x: -90, y: 180, z: 0});
 
         // Scale the model on tap
-        el.setAttribute('scale', {x: 0.006, y: 0.006, z: 0.006});
+        el.setAttribute('scale', {x: 0.1, y: 0.1, z: 0.1});
       });
     }
   });

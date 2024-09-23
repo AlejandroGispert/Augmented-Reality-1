@@ -7,27 +7,13 @@
   </head>
   <body>
     <a-scene
-      mindar-image="imageTargetSrc: ./targets.mind;"
+      mindar-image="imageTargetSrc: ./targets.mind; smoothingFactor: 0.1;"
       color-space="sRGB"
       renderer="colorManagement: true, physicallyCorrectLights"
       vr-mode-ui="enabled: false"
       device-orientation-permission-ui="enabled: false"
     >
       <a-assets>
-        <img
-          id="card"
-          src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/examples/image-tracking/assets/card-example/card.png"
-        />
-        <img id="charizard" src="./charizard.jpg" />
-        <img id="mycard" src="./mycard.jpg" />
-        <a-asset-item
-          id="avatarModel"
-          src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/examples/image-tracking/assets/card-example/softmind/scene.gltf"
-        ></a-asset-item>
-        <a-asset-item
-          id="avatarModel2"
-          src="https://raw.githubusercontent.com/nicolocarpignoli/nicolocarpignoli.github.io/master/ar-playground/models/CesiumMan.gltf"
-        ></a-asset-item>
         <a-asset-item
           id="avatarModel3"
           src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"
@@ -36,48 +22,17 @@
 
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-      <!-- Interactive Model -->
+      <!-- Stabilized and Interactive 3D Model -->
       <a-entity mindar-image-target="targetIndex: 0" stabilizer>
         <a-gltf-model
           src="#avatarModel3"
           id="interactiveMobileModel"
           rotation="90 0 0"
           position="0 0 0"
-          scale="0.04 0.04 0.04"
+          scale="0.03 0.03 0.03"
           mobile-interaction
-          animation__hover="property: scale; to: 0.2 0.2 0.2; dur: 200; startEvents: touchstart; pauseEvents: touchend"
-          animation__rotation="property: rotation; to: 90 360 0; dur: 1000; startEvents: touchstart; loop: 1"
         >
-          >
         </a-gltf-model>
-      </a-entity>
-
-      <!-- Additional Entities -->
-      <a-entity mindar-image-target="targetIndex: 1">
-        <a-plane
-          src="#charizard"
-          position="0 0 0"
-          height="1"
-          width="1"
-          rotation="90 0 0"
-        ></a-plane>
-      </a-entity>
-
-      <a-entity mindar-image-target="targetIndex: 2">
-        <a-plane
-          src="#mycard"
-          position="0 0 0"
-          height="0.552"
-          width="1"
-          rotation="90 0 0"
-        ></a-plane>
-        <a-gltf-model
-          rotation="0 0 0"
-          position="0 0 0.1"
-          scale="0.005 0.005 0.005"
-          src="#avatarModel3"
-          animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
-        ></a-gltf-model>
       </a-entity>
     </a-scene>
 
@@ -86,7 +41,7 @@
         init: function () {
           var el = this.el;
 
-          // Add touch event listener (tap on mobile)
+          // Add touchstart event listener for interaction on mobile
           el.addEventListener("touchstart", function () {
             // Rotate the model on tap
             el.setAttribute("rotation", { x: 90, y: 360, z: 0 });
@@ -96,6 +51,11 @@
           });
         },
       });
+
+      // Apply the interaction to the model
+      document
+        .querySelector("#interactiveMobileModel")
+        .setAttribute("mobile-interaction", "");
     </script>
   </body>
 </html>

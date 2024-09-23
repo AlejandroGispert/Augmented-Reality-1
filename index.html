@@ -37,19 +37,18 @@
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
       <!-- Interactive Model -->
-      <a-entity mindar-image-target="targetIndex: 0">
+      <a-entity mindar-image-target="targetIndex: 0" stabilizer>
         <a-gltf-model
           src="#avatarModel3"
           id="interactiveMobileModel"
           rotation="90 0 0"
-          position="0 -0.5 0"
-          scale="0.05 0.05 0.05"
+          position="0 0 0"
+          scale="0.04 0.04 0.04"
           mobile-interaction
-          animation__hover="property: scale; to: 0.2 0.2 0.2; dur: 200;
-          startEvents: click; pauseEvents: mouseleave"
-          animation__rotation="property: rotation; to: 90 360 0; dur: 1000;
-          startEvents: click; loop: 1"
+          animation__hover="property: scale; to: 0.2 0.2 0.2; dur: 200; startEvents: touchstart; pauseEvents: touchend"
+          animation__rotation="property: rotation; to: 90 360 0; dur: 1000; startEvents: touchstart; loop: 1"
         >
+          >
         </a-gltf-model>
       </a-entity>
 
@@ -87,8 +86,8 @@
         init: function () {
           var el = this.el;
 
-          // Add touch event listener (tap acts as click on mobile)
-          el.addEventListener("click", function () {
+          // Add touch event listener (tap on mobile)
+          el.addEventListener("touchstart", function () {
             // Rotate the model on tap
             el.setAttribute("rotation", { x: 90, y: 360, z: 0 });
 

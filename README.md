@@ -1,1 +1,1 @@
-This is augmented my reality project for converting my sons pokemon cards into AR
+This is my augmented reality project for converting my sons pokemon cards into AR

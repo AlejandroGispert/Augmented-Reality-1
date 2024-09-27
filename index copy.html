@@ -21,11 +21,9 @@
       </a-assets>
 
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-      <!-- <a-sphere position="0 0 0" radius="1.25" color="blue"></a-sphere> -->
-      <!-- Stabilized and Interactive 3D Model -->
 
+      <!-- Stabilized and Interactive 3D Model -->
       <a-entity mindar-image-target="targetIndex: 0" stabilizer>
-        <!-- T-rex -->
         <a-gltf-model
           src="#avatarModel3"
           id="interactiveMobileModel"
@@ -36,31 +34,6 @@
         >
         </a-gltf-model>
       </a-entity>
-
-      <!-- my card sphere blue -->
-      <a-entity mindar-image-target="targetIndex: 1" stabilizer>
-        <a-sphere position="0 0 0" radius="0.5" color="blue"></a-sphere>
-      </a-entity>
-      <!-- dark energy -->
-      <a-entity mindar-image-target="targetIndex: 2" stabilizer>
-        <a-sphere
-          position="0 0 0.7"
-          radius="0.5"
-          color="purple"
-          opacity="1"
-        ></a-sphere>
-        <a-light
-          type="point"
-          color="#8A2BE2"
-          intensity=""
-          position="0 1.5 0"
-          distance="8"
-        ></a-light>
-      </a-entity>
-      <a-entity mindar-image-target="targetIndex: 3" stabilizer>
-        <a-sphere position="0 1.5 0" radius="0.5" color="yellow"></a-sphere>
-      </a-entity>
-      <a-light type="directional" position="1 1 0" intensity="2"></a-light>
     </a-scene>
 
     <script>
